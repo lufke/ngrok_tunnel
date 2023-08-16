@@ -8,7 +8,6 @@ import 'dotenv/config'
                   {
                         hostname: String,
                         port: Number,
-                        created_at: String,
                         hostport: String
                   }, {
                   timestamps: true,
