@@ -2,6 +2,8 @@ import { Schema, model, connect } from 'mongoose';
 import ngrok from 'ngrok';
 import 'dotenv/config'
 
+//desde vscode-notebook
+
 (async () => {
       try {
             const servidorSchema = new Schema(
