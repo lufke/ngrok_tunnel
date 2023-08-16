@@ -15,14 +15,16 @@ import 'dotenv/config'
             })
             const Servidor = model('Servidor', servidorSchema, 'Servidor')
             await connect(process.env.MONGODB_URL)
-            const logEvent = (event) => console.log(event)
+            const logEvent = (log) => console.log({ log })
+            const statusChangeEvent = (status) => console.log({ status })
+            const terminatedEvent = (terminated) => console.log({ terminated })
             const config = {
                   proto: 'tcp',
                   addr: 1883,
                   authtoken: process.env.NGROK_TOKEN,
-                  onStatusChange: status => console.warn({ status }),
-                  onLogEvent: event => logEvent(event),
-                  onTerminated: terminated => console.warn({ terminated })
+                  onStatusChange: statusChangeEvent,
+                  onLogEvent: logEvent,
+                  onTerminated: terminatedEvent
             }
             const urlTunnel = await ngrok.connect(config);
             const url = new URL(urlTunnel);
